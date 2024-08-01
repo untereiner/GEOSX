@@ -1,4 +1,4 @@
-name: Compliance
+name: Compliance Checks
 
 on:
   pull_request:
