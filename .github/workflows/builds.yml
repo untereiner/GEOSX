@@ -5,6 +5,8 @@ on:
     workflows: ["Compliance Checks"]
     types:
       - completed
+    branches:
+      - '*'
   # push:
   #   branches:
   #     - develop
