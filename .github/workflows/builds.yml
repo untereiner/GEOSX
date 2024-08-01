@@ -1,6 +1,12 @@
 name: Builds  
 
 on:
+  workflow_run:
+    workflows: ["Compliance Checks"]
+    types: [completed]
+    branches-ignore:
+      - "master"
+  
   workflow_call:
   # push:
   #   branches:

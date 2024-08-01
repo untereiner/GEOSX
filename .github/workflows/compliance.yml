@@ -1,20 +1,11 @@
 name: Compliance Checks
 
+# on:
+#   workflow_call:
 on:
-  workflow_call:
-    # inputs:
-    #   config-path:
-    #     required: true
-    #     type: string
-    # Map the workflow outputs to job outputs
-    # outputs:
-    #   valid:
-    #     description: "Returns true if all compliance tests are validated, false otherwise"
-    #     value: ${{ jobs.example_job.outputs.output1 }}
-    # secrets:
-    #   GITHUB_TOKEN:
-    #     required: true
-
+  pull_request:
+    types: [opened, synchronize, reopened, edited, ready_for_review, converted_to_draft]
+  workflow_dispatch:
 
 jobs:
   # Checks if PR title follows conventional semantics
