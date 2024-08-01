@@ -11,9 +11,9 @@ on:
     #   valid:
     #     description: "Returns true if all compliance tests are validated, false otherwise"
     #     value: ${{ jobs.example_job.outputs.output1 }}
-    secrets:
-      GITHUB_TOKEN:
-        required: true
+    # secrets:
+    #   GITHUB_TOKEN:
+    #     required: true
 
 # Cancels in-progress workflows for a PR when updated
 concurrency:
