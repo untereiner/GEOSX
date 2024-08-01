@@ -2,13 +2,13 @@ name: Builds
 
 on: 
   workflow_run:
-    workflows: [Compliance Checks]
+    workflows: ["Compliance Checks"]
     types:
       - completed
-  push:
-    branches:
-      - develop
-  workflow_dispatch:
+  # push:
+  #   branches:
+  #     - develop
+  # workflow_dispatch:
 
 # Cancels in-progress workflows for a PR when updated
 concurrency:
