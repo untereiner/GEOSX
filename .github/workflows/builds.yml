@@ -18,31 +18,40 @@ concurrency:
 # Please define `build.args.GEOS_TPL_TAG` in `.devcontainer/devcontainer.json`
 
 jobs:
-  # Jobs will be cancelled if PR is a draft.
-  # PR status must be "Open" to run CI.
-  get_docker_image_tag:
-    # if: ${{ always() }}
-    # needs: [semantic_pull_request]
-    # Everywhere in this workflow, we use the most recent ubuntu distribution available in Github Actions
-    # to ensure maximum support of google cloud's sdk.
-    runs-on: ubuntu-22.04
-    outputs:
-      DOCKER_IMAGE_TAG: ${{ steps.extract_docker_image_tag.outputs.DOCKER_IMAGE_TAG }}
+  build:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-    # The TPL tag is contained in the codespaces configuration to avoid duplications.
-    - name: Checkout .devcontainer/devcontainer.json
-      uses: actions/checkout@v4.1.7
-      with:
-        sparse-checkout: |
-          .devcontainer/devcontainer.json
-        sparse-checkout-cone-mode: false
-        submodules: false
-        lfs: false
-        fetch-depth: 1
-    - name: Extract docker image tag
-      id: extract_docker_image_tag
-      run: |
-        echo "DOCKER_IMAGE_TAG=$(jq '.build.args.GEOS_TPL_TAG' -r .devcontainer/devcontainer.json)" >> "$GITHUB_OUTPUT"
+      # Runs a single command using the runners shell
+      - name: Run a one-line script
+        run: echo Hello, world!
+  # # Jobs will be cancelled if PR is a draft.
+  # # PR status must be "Open" to run CI.
+  # get_docker_image_tag:
+  #   # if: ${{ always() }}
+  #   # needs: [semantic_pull_request]
+  #   # Everywhere in this workflow, we use the most recent ubuntu distribution available in Github Actions
+  #   # to ensure maximum support of google cloud's sdk.
+  #   runs-on: ubuntu-22.04
+  #   outputs:
+  #     DOCKER_IMAGE_TAG: ${{ steps.extract_docker_image_tag.outputs.DOCKER_IMAGE_TAG }}
+  #   steps:
+  #   # The TPL tag is contained in the codespaces configuration to avoid duplications.
+  #   - name: Checkout .devcontainer/devcontainer.json
+  #     uses: actions/checkout@v4.1.7
+  #     with:
+  #       sparse-checkout: |
+  #         .devcontainer/devcontainer.json
+  #       sparse-checkout-cone-mode: false
+  #       submodules: false
+  #       lfs: false
+  #       fetch-depth: 1
+  #   - name: Extract docker image tag
+  #     id: extract_docker_image_tag
+  #     run: |
+  #       echo "DOCKER_IMAGE_TAG=$(jq '.build.args.GEOS_TPL_TAG' -r .devcontainer/devcontainer.json)" >> "$GITHUB_OUTPUT"
 
 
   # # Matrix containing all the CPU build.
