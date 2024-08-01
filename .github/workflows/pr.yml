@@ -1,0 +1,19 @@
+name: Pull Request
+
+on:
+  pull_request:
+      types: [opened, synchronize, reopened, edited, ready_for_review]
+  workflow_dispatch:
+
+# Cancels in-progress workflows for a PR when updated
+concurrency:
+    group: ${{ github.workflow }}-${{ github.ref }}
+    cancel-in-progress: true
+  
+  # Please define `build.args.GEOS_TPL_TAG` in `.devcontainer/devcontainer.json`
+  
+jobs:
+  run_compliance_checks:
+    name: Compliance Checks
+    uses: ./.github/workflows/compliance.yml
+    secrets: inherit
