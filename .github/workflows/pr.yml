@@ -9,11 +9,16 @@ on:
 concurrency:
     group: ${{ github.workflow }}-${{ github.ref }}
     cancel-in-progress: true
-  
-  # Please define `build.args.GEOS_TPL_TAG` in `.devcontainer/devcontainer.json`
-  
+    
 jobs:
   run_compliance_checks:
     name: Compliance Checks
     uses: ./.github/workflows/compliance.yml
+    secrets: inherit
+
+  run_builds:
+    needs:
+      - run_compliance_checks
+    name: Build step
+    uses: ./.github/workflows/builds.yml
     secrets: inherit
