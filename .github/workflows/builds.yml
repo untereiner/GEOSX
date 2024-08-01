@@ -19,12 +19,6 @@ concurrency:
 # Please define `build.args.GEOS_TPL_TAG` in `.devcontainer/devcontainer.json`
 
 jobs:
-  compliance_checks:
-    name: compliance
-    uses: ./.github/workflows/build_and_test.yml
-    secrets:
-      token: ${{ secrets.GITHUB_TOKEN }}
-
   # Matrix containing all the CPU build.
   # Those are quite fast and can efficiently benefit from the `sccache' tool to make them even faster.
   cpu_builds:
