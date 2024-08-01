@@ -2,7 +2,7 @@ name: Compliance Checks
 
 on:
   pull_request:
-      types: [opened, synchronize, reopened, edited]
+      types: [opened, synchronize, reopened, edited, ready_for_review]
   workflow_dispatch:
 
 # Cancels in-progress workflows for a PR when updated
